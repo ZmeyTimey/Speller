@@ -17,6 +17,8 @@ public class WordsMapCreator {
 
     public static Map<ArrayList<String>,ArrayList<String>> mapCr() throws Exception {
 
+        System.setProperty("console.encoding","cp866");
+
         String line = "";
         Scanner in = new Scanner(System.in);
         String spellChoice;

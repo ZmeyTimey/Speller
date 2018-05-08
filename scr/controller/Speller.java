@@ -15,6 +15,8 @@ public class Speller {
 
     public static void main(String[] args) throws Exception {
 
+        System.setProperty("console.encoding","cp866");
+
         int[] result = new int[2];
 
         Map<ArrayList<String>,ArrayList<String>> map = WordsMapCreator.mapCr();
