@@ -21,9 +21,8 @@ public class WordsMapCreator {
         Scanner in = new Scanner(System.in);
         String spellChoice;
         Boolean FirstDel = true;
-        //String classDirectory = PathFinder.getClassDirectory();
-        String classDirectory = "E:\\Data\\ProgramsJava\\Executable";
-        BufferedReader reader = new BufferedReader(new FileReader(classDirectory + "\\Speller\\Spell.txt"));
+        String classDirectory = PathFinder.getClassDirectory();
+        BufferedReader reader = new BufferedReader(new FileReader(classDirectory + "\\Spell.txt"));
 
                 Map<ArrayList<String>, ArrayList<String>> map = new HashMap<ArrayList<String>, ArrayList<String>>();
                 LineNumberReader lineNumber = new LineNumberReader(reader);

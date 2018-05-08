@@ -1,6 +1,7 @@
 package controller;
 
 import model.Checker;
+import model.PathFinder;
 import model.WordsMapCreator;
 import java.io.*;
 import java.util.*;
@@ -15,6 +16,7 @@ public class Speller {
     public static void main(String[] args) throws Exception {
 
         int[] result = new int[2];
+
         Map<ArrayList<String>,ArrayList<String>> map = WordsMapCreator.mapCr();
 
            result = Checker.check(map);
@@ -28,4 +30,5 @@ public class Speller {
                 System.out.println("Jesteś gównem!");
             }
                 }
+
     }

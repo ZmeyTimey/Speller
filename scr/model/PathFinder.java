@@ -3,6 +3,8 @@ package model;
 import java.io.File;
 import java.net.URL;
 import java.net.URLDecoder;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * Created by Тимон on 30.03.18.
@@ -10,8 +12,7 @@ import java.net.URLDecoder;
  */
  public class PathFinder {
     public static String getClassDirectory() throws Exception {
-        URL resource = new PathFinder().getClass().getResource("/");
-        String classDirectory = resource.getFile();
-        return classDirectory;
+
+        return System.getProperty("user.dir");
     }
 }
