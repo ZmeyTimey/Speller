@@ -23,7 +23,7 @@ public class Checker {
 
             Boolean Check = false;
 
-            Keys = (ArrayList<String>)entry.getKey();
+            Keys  = (ArrayList<String>)entry.getKey();
             Words = (ArrayList<String>)entry.getValue();
 
             Helper.ArrayOut(Keys);
