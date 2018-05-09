@@ -16,18 +16,22 @@ public class Speller {
 
     public static void main(String[] args) throws Exception {
 
-        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        System.out.flush();
-
         int[] result;
         String spellChoice;
         Scanner scan = new Scanner(System.in);
+
+        cleanScreen();
+
+        printHeader();
+        scan.nextLine();
+
+        cleanScreen();
 
         print("¬€¡≈–»“≈ ¬»ƒ —œ≈ÀÀ»Õ√¿:");
 
         while (true) {
 
-            System.out.println("Foreign to Russian - 0, Russian to Foreign - 1");
+            print("Foreign to Russian - 0, Russian to Foreign - 1");
             spellChoice = scan.nextLine();
             if (spellChoice.equals("0")) {
                 new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -59,7 +63,7 @@ public class Speller {
                 print("“€  ”—Œ  √Œ¬Õ¿!");
             }
 
-        System.in.read();
+        scan.nextLine();
                 }
 
     }

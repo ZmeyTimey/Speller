@@ -1,5 +1,6 @@
 package view;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -38,5 +39,16 @@ public class Viewer {
         arrayOut(arr);
         System.out.println("*");
         System.out.println("---------------------------------------------------------------------------------\n");
+    }
+
+    public static void printHeader() {
+        print("***Program SPELLER v.0.42***");
+        print("******Created by Timey******");
+        print("*********2018 Minsk*********");
+    }
+
+    public static void cleanScreen() throws Exception {
+        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        System.out.flush();
     }
 }
