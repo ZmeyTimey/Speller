@@ -1,10 +1,11 @@
 package controller;
 
+import static view.Viewer.*;
+
 import model.Checker;
-import model.PathFinder;
 import model.WordsMapCreator;
-import java.io.*;
 import java.util.*;
+
 /**
  * Программа-speller
  * Используется для проверки знания иностранных слов и словосочетаний.
@@ -18,19 +19,44 @@ public class Speller {
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         System.out.flush();
 
-        int[] result = new int[2];
+        int[] result;
+        String spellChoice;
+        Scanner scan = new Scanner(System.in);
 
-        Map<ArrayList<String>,ArrayList<String>> map = WordsMapCreator.mapCr();
+        print("ВЫБЕРИТЕ ВИД СПЕЛЛИНГА:");
+
+        while (true) {
+
+            System.out.println("Foreign to Russian - 0, Russian to Foreign - 1");
+            spellChoice = scan.nextLine();
+            if (spellChoice.equals("0")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                System.out.flush();
+                print("TRANSLATE FROM ENGLISH INTO RUSSIAN \n");
+                break;
+
+            } else {
+                if (spellChoice.equals("1")) {
+                    new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                    System.out.flush();
+                    print("TRANSLATE FROM RUSSIAN INTO ENGLISH \n");
+                    break;
+
+                } else print("ЧИТАЙ ЧТО НАПИСАНО, ДЯТЕЛ! \n");
+            }
+        }
+
+        Map<ArrayList<String>,ArrayList<String>> map = WordsMapCreator.createMap(spellChoice.equals("1"));
 
            result = Checker.check(map);
-            System.out.println("Правильно: " + result[1]);
-            System.out.println("Неправильно: " + result[0] + "\n");
+            print("Правильно: " + result[1]);
+            print("Неправильно: " + result[0] + "\n");
 
             if (result[0] == 0) {
-                System.out.println("Ты нечеловечески крут!");
+                print("ТЫ НЕЧЕЛОВЕЧЕСКИ КРУТ!");
             }
             if (result[1] == 0) {
-                System.out.println("Ты кусок говна!");
+                print("ТЫ КУСОК ГОВНА!");
             }
 
         System.in.read();

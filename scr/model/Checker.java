@@ -1,6 +1,6 @@
 package model;
 
-import view.Helper;
+import static view.Viewer.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,6 +19,7 @@ public class Checker {
         Scanner in = new Scanner(System.in);
         ArrayList<String> Keys;
         ArrayList<String> Words;
+
         for (Map.Entry entry : map.entrySet()) {
 
             Boolean Check = false;
@@ -26,8 +27,8 @@ public class Checker {
             Keys  = (ArrayList<String>)entry.getKey();
             Words = (ArrayList<String>)entry.getValue();
 
-            Helper.ArrayOut(Keys);
-            System.out.print(": ");
+            arrayOut(Keys);
+            printColon();
 
             vyserword = in.next();
 
@@ -39,16 +40,10 @@ public class Checker {
 
             if (Check) {
                 check[1]++;
-                System.out.println("\n---------------------------------------------------");
-                System.out.println("***¬≈–ÕŒ!***");
-                System.out.println("---------------------------------------------------\n");
+                printMsgCorrect();
             } else {
                 check[0]++;
-                System.out.println("\n---------------------------------------------------");
-                System.out.print("*Õ≈ œ–¿¬ƒ¿! ƒŒÀ∆ÕŒ ¡€“‹ “¿ : ");
-                Helper.ArrayOut(Words);
-                System.out.println("*");
-                System.out.println("---------------------------------------------------\n");
+                printMsgIncorrect(Words);
             }
         }
         return check;
