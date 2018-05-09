@@ -10,14 +10,12 @@ import java.util.Map;
 import java.util.Scanner;
 
 /**
- * Created by –¢–∏–º–æ–Ω on 27.03.18.
+ * Created by “ËÏÓÌ on 27.03.18.
  *
  */
 public class WordsMapCreator {
 
     public static Map<ArrayList<String>,ArrayList<String>> mapCr() throws Exception {
-
-        System.setProperty("console.encoding","cp866");
 
         String line = "";
         Scanner in = new Scanner(System.in);
@@ -28,27 +26,40 @@ public class WordsMapCreator {
 
                 Map<ArrayList<String>, ArrayList<String>> map = new HashMap<ArrayList<String>, ArrayList<String>>();
                 LineNumberReader lineNumber = new LineNumberReader(reader);
-
-        System.out.println("–í—ã–±–µ—Ä–∏—Ç–µ –≤–∏–¥ —Å–ø–µ–ª–ª–∏–Ω–≥–∞:");
+        
+        System.out.println("¬€¡≈–»“≈ ¬»ƒ —œ≈ÀÀ»Õ√¿:");
 
         while (true) {
+
             System.out.println("Foreign to Russian - 0, Russian to Foreign - 1");
             spellChoice = in.nextLine();
             if (spellChoice.equals("0")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                System.out.flush();
+                System.out.println("TRANSLATE FROM ENGLISH INTO RUSSIAN \n");
                 break;
+
             } else {
                 if (spellChoice.equals("1")) {
+                    new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                    System.out.flush();
+                    System.out.println("TRANSLATE FROM RUSSIAN INTO ENGLISH \n");
                     break;
-                } else System.out.println("–ß–∏—Ç–∞–π,—á—Ç–æ –Ω–∞–ø–∏—Å–∞–Ω–æ, –¥—è—Ç–µ–ª!");
+
+                } else System.out.println("◊»“¿… ◊“Œ Õ¿œ»—¿ÕŒ, ƒﬂ“≈À! \n");
             }
         }
+
+
                 while ((line = lineNumber.readLine()) != null) {
                     ArrayList<String> KeyArray = new ArrayList<String>();
                     ArrayList<String> ValueArray = new ArrayList<String>();
                     String parts[] = line.split("-");
                     String words[] = parts[1].split(", ");
-                    if (FirstDel) {parts[0] = Helper.removeCharAt(parts[0], 0);
-                        FirstDel = false;}
+
+                   // if (FirstDel) {parts[0] = Helper.removeCharAt(parts[0], 0);
+                     //   FirstDel = false;}
+
                     if (spellChoice.equals("1")) {
                         for (int i = 0; i < words.length; i++) {
                             KeyArray.add(i, words[i]);

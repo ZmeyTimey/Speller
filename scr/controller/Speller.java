@@ -6,31 +6,34 @@ import model.WordsMapCreator;
 import java.io.*;
 import java.util.*;
 /**
- * РџСЂРѕРіСЂР°РјРјР°-speller
- * РСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ РїСЂРѕРІРµСЂРєРё Р·РЅР°РЅРёСЏ РёРЅРѕСЃС‚СЂР°РЅРЅС‹С… СЃР»РѕРІ Рё СЃР»РѕРІРѕСЃРѕС‡РµС‚Р°РЅРёР№.
- * Creating by РўРёРјРµР№ since 24.03.18.
- * РњР°СЃС‚СѓСЂР±РёСЂРѕРІР°С‚СЊ РЅР° РґР°РЅРЅС‹Р№ РїСЂРѕРіСЂР°РјРјРЅС‹Р№ РєРѕРґ Рё РїСЂРёР»Р°РіР°СЋС‰РёРµСЃСЏ Рє РЅРµРјСѓ РєР»Р°СЃСЃС‹ Р±РµР· СЂР°Р·СЂРµС€РµРЅРёСЏ Р°РІС‚РѕСЂР° СЃС‚СЂРѕРіРѕ Р·Р°РїСЂРµС‰РµРЅРѕ!
+ * Программа-speller
+ * Используется для проверки знания иностранных слов и словосочетаний.
+ * Creating by Тимей since 24.03.18.
+ * Мастурбировать на данный программный код и прилагающиеся к нему классы без разрешения автора строго запрещено!
  */
 public class Speller {
 
     public static void main(String[] args) throws Exception {
 
-        System.setProperty("console.encoding","cp866");
+        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        System.out.flush();
 
         int[] result = new int[2];
 
         Map<ArrayList<String>,ArrayList<String>> map = WordsMapCreator.mapCr();
 
            result = Checker.check(map);
-            System.out.println("Dobrze: " + result[1]);
-            System.out.println("GГіwno: " + result[0]);
+            System.out.println("Правильно: " + result[1]);
+            System.out.println("Неправильно: " + result[0] + "\n");
 
             if (result[0] == 0) {
-                System.out.println("JesteЕ› boski!");
+                System.out.println("Ты нечеловечески крут!");
             }
             if (result[1] == 0) {
-                System.out.println("JesteЕ› gГіwnem!");
+                System.out.println("Ты кусок говна!");
             }
+
+        System.in.read();
                 }
 
     }

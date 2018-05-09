@@ -11,7 +11,7 @@ public class Helper {
     public static void ArrayOut(ArrayList arr) {
         for (int i = 0; i < arr.size(); i++) {
             if (i == arr.size()-1) {
-                System.out.println(arr.get(i));
+                System.out.print(arr.get(i));
             } else {
             System.out.print(arr.get(i) + ", "); }
         }

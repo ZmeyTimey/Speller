@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 /**
- * Created by –¢–∏–º–æ–Ω on 29.03.18.
+ * Created by “ËÏÓÌ on 29.03.18.
  *
  */
 public class Checker {
@@ -27,8 +27,9 @@ public class Checker {
             Words = (ArrayList<String>)entry.getValue();
 
             Helper.ArrayOut(Keys);
+            System.out.print(": ");
 
-            vyserword = in.nextLine();
+            vyserword = in.next();
 
             for (int i = 0; i < Words.size(); i++) {
                 if (vyserword.equals(Words.get(i))) {
@@ -38,11 +39,16 @@ public class Checker {
 
             if (Check) {
                 check[1]++;
-                System.out.println("poprawnie!");
+                System.out.println("\n---------------------------------------------------");
+                System.out.println("***¬≈–ÕŒ!***");
+                System.out.println("---------------------------------------------------\n");
             } else {
                 check[0]++;
-                System.out.print("Nie Prawda! Tak powinno byƒá: ");
+                System.out.println("\n---------------------------------------------------");
+                System.out.print("*Õ≈ œ–¿¬ƒ¿! ƒŒÀ∆ÕŒ ¡€“‹ “¿ : ");
                 Helper.ArrayOut(Words);
+                System.out.println("*");
+                System.out.println("---------------------------------------------------\n");
             }
         }
         return check;
