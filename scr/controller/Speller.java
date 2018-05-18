@@ -90,6 +90,8 @@ public class Speller {
             }
 
         reader.readLine();
+        reader.close();
+        fileReader.close();
                 }
 
     }
