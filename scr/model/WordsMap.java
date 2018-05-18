@@ -6,9 +6,9 @@ package model;
  */
 public class WordsMap {
 
-    public String key;
-    public String value[];
-    public boolean kindOfMap;
+    private String key;
+    private String[] value;
+    private boolean kindOfMap;
 
     public WordsMap(boolean kindOfMap) {
         this.kindOfMap = kindOfMap;
