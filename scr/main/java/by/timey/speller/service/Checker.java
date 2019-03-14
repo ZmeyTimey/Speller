@@ -1,12 +1,9 @@
-package model;
+package by.timey.speller.service;
 
 
 import java.io.IOException;
 
-/**
- * Created by Тимон on 29.03.18.
- *
- */
+
 public class Checker {
 
     public static boolean check(String userWord, String[] correctWords) throws IOException {

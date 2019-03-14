@@ -1,7 +1,7 @@
-package view;
+package by.timey.speller.view;
 
 /**
- * Created by рХЛНМ on 31.03.18.
+ * Created by О©╫О©╫О©╫О©╫О©╫ on 31.03.18.
  *
  */
 public class Viewer {
@@ -26,13 +26,13 @@ public class Viewer {
 
     public static void printMsgCorrect() {
         print("\n---------------------------------------------------------------------------------");
-        print("***бепмн!***");
+        print("***О©╫О©╫О©╫О©╫О©╫!***");
         print("---------------------------------------------------------------------------------\n");
     }
 
     public static void printMsgIncorrect(String[] arr) {
         System.out.println("\n---------------------------------------------------------------------------------");
-        System.out.print("*ме опюбдю! днкфмн ашрэ рюй: ");
+        System.out.print("*О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫! О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫: ");
         printArrayOut(arr);
         System.out.println("*");
         System.out.println("---------------------------------------------------------------------------------\n");
