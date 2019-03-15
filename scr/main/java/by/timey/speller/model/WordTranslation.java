@@ -12,14 +12,15 @@ import javax.persistence.Column;
 
 import java.util.Set;
 
+
 @Entity
 @Table(name = "words")
 @Data
 public class WordTranslation {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO, generator = "words_seq_gen")
-  @SequenceGenerator(name = "words_seq_gen", sequenceName = "words_id_seq")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "words_id_seq")
+  @SequenceGenerator(name = "words_id_seq", allocationSize = 1)
   private long id;
 
   @Column(name = "english_word")
