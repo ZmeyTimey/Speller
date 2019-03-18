@@ -1,6 +1,6 @@
 package by.timey.speller.dao;
 
-import by.timey.speller.dao.DAO;
+import by.timey.speller.dao.util.ConnectionUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -8,14 +8,13 @@ import javax.persistence.NoResultException;
 import java.util.List;
 
 
-public abstract class AbstractDAO<E, I extends Number> implements DAO<E, I> {
+public abstract class AbstractDAO<E, I extends Number> implements CrudDAO<E, I> {
 
   protected final SessionFactory sessionFactory;
   protected Class<E> entityClass;
 
-  public AbstractDAO(SessionFactory sessionFactory,
-                     Class<E> entityClass) {
-    this.sessionFactory = sessionFactory;
+  public AbstractDAO(Class<E> entityClass) {
+    sessionFactory = ConnectionUtil.getFactory();
     this.entityClass = entityClass;
   }
 
@@ -27,8 +26,6 @@ public abstract class AbstractDAO<E, I extends Number> implements DAO<E, I> {
       session.getTransaction().commit();
     }
   }
-
-  public abstract List<E> readAll();
 
   public E readById(I id) {
     E result;

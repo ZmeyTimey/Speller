@@ -1,20 +1,12 @@
 package by.timey.speller.controller;
 
-import static by.timey.speller.view.Viewer.*;
-
-import by.timey.speller.dao.impl.WordTranslationDAO;
+import by.timey.speller.dao.impl.DictionaryDAO;
 import by.timey.speller.dao.util.ConnectionUtil;
+import by.timey.speller.model.User;
 import by.timey.speller.model.WordTranslation;
-import by.timey.speller.service.Checker;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.InputStreamReader;
-import java.io.LineNumberReader;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import by.timey.speller.service.DictionaryService;
+import by.timey.speller.service.UserDictionaryService;
+import by.timey.speller.service.UserService;
 
 /**
  * Speller
@@ -22,23 +14,14 @@ import java.util.Set;
  */
 public class Speller {
 
-    public static void main(String[] args) {
+  private static final UserService USER_SERVICE
+      = new UserService();
+  private static final DictionaryService DICTIONARY_SERVICE
+      = new DictionaryService();
+  private static final UserDictionaryService USER_DICTIONARY_SERVICE
+      = new UserDictionaryService();
 
-//      WordTranslation wordTranslation = new WordTranslation();
-//      wordTranslation.setId(1L);
-//      wordTranslation.setWord("deliver");
-//
-//      Set<String> translation = new HashSet<>();
-//      translation.add("доставить");
-//      translation.add("поставлять");
-//      translation.add("доставлять");
-//      wordTranslation.setTranslation(translation);
-//
-//      WordTranslationDAO wordTranslationDAO
-//          = new WordTranslationDAO(ConnectionUtil.getFactory());
-//
-//      wordTranslationDAO.create(wordTranslation);
-//      wordTranslationDAO.readById(1L);
+    public static void main(String[] args) {
 
 
 

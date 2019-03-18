@@ -2,7 +2,7 @@ package by.timey.speller.dao;
 
 import java.util.List;
 
-public interface DAO<E, I extends Number> {
+public interface CrudDAO<E, I extends Number> {
 
   void create(E entity);
   List<E> readAll();

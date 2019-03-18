@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class Checker {
 
-    public static boolean check(String userWord, String[] correctWords) throws IOException {
+    public static boolean check(String userWord, String[] correctWords) {
         boolean check = false;
         int i = 0;
 
