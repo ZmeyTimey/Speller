@@ -9,10 +9,12 @@ import by.timey.speller.util.ConsoleReader;
 import by.timey.speller.view.SpellingTypeDialogViewer;
 import by.timey.speller.controller.spelling.Spelling;
 import by.timey.speller.controller.spelling.SpellingFactory;
+import by.timey.speller.view.StartDialogViewer;
 
 import java.util.List;
 
-import static by.timey.speller.view.MainViewer.*;
+import static by.timey.speller.view.MainConsoleViewer.*;
+import static java.lang.Thread.sleep;
 
 /**
  * Speller
@@ -27,15 +29,28 @@ public class Speller {
   private static final UserDictionaryService USER_DICTIONARY_SERVICE
       = new UserDictionaryService();
 
+  private static ConsoleReader reader = new ConsoleReader();
 
     public static void main(String[] args) {
 
-      ConsoleReader reader = new ConsoleReader();
-
       cleanScreen();
       printHeader();
-      reader.readLine();
 
+      reader.readLine();
+      start(reader);
+    }
+
+    private static void start(ConsoleReader reader) {
+      StartDialogViewer dialogViewer = new StartDialogViewer(reader);
+      dialogViewer.startDialog();
+      if (dialogViewer.getContinueOrExit()) {
+        spell();
+      } else {
+        exit();
+      }
+    }
+
+    private static void spell() {
       cleanScreen();
       Spelling spelling = initializeSpelling(reader);
 
@@ -45,6 +60,9 @@ public class Speller {
 
       executeSpelling(spelling, wordTranslationList, reader, answerCounter);
       viewResults(answerCounter);
+
+      reader.readLine();
+      start(reader);
     }
 
     private static Spelling initializeSpelling(ConsoleReader reader) {
@@ -67,16 +85,16 @@ public class Speller {
       while (spelling.isInProcess()) {
         spelling.nextWord();
 
-        print(spelling.getCurrentWord());
+        printWithColon(spelling.getCurrentWord());
         String userWord = reader.readLine();
 
         if (spelling.isUserWordCorrect(userWord)) {
           answerCounter.correct();
-          print("Correct!\n");
+          printMsgCorrect();
+
         } else {
           answerCounter.incorrect();
-          print("Incorrect!");
-          print("Correct answer: " + spelling.getCurrentTranslation() + "\n");
+          printMsgIncorrect(spelling.getCurrentTranslation());
         }
       }
     }
@@ -87,14 +105,18 @@ public class Speller {
       int incorrectAnswers = answerCounter.getIncorrectAnswers();
       int totalAnswers = correctAnswers + incorrectAnswers;
 
-      print("SPELLING COMPLETE");
-      print("Correct answers: " + correctAnswers + "/" + totalAnswers + "\n");
+      printSpellingCompleteMsg();
+      printSpellingResults(correctAnswers, incorrectAnswers, totalAnswers);
+    }
 
-      if (correctAnswers == 0) {
-        print("You are stupid asshole!");
-      }
-      if (incorrectAnswers == 0) {
-        print("You are GODLIKE!");
+    private static void exit() {
+      cleanScreen();
+      printGoodbye();
+
+      try {
+        sleep(5000);
+      } catch (InterruptedException e) {
+        cleanScreen();
       }
     }
 }

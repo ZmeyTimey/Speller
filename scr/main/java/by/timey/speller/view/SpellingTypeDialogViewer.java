@@ -3,8 +3,8 @@ package by.timey.speller.view;
 import by.timey.speller.util.ConsoleReader;
 import lombok.Getter;
 
-import static by.timey.speller.view.MainViewer.cleanScreen;
-import static by.timey.speller.view.MainViewer.print;
+import static by.timey.speller.view.MainConsoleViewer.cleanScreen;
+import static by.timey.speller.view.MainConsoleViewer.print;
 
 public class SpellingTypeDialogViewer {
 
@@ -18,18 +18,19 @@ public class SpellingTypeDialogViewer {
   }
 
   private void printSpellingChoiceMsg() {
-    print("Выберете вид спеллинга:");
+    print("Choose spelling type:");
+  }
+  private void printNumCases() {
+    print("English to Russian - 0, Russian to English - 1");
   }
 
   public void startDialog() {
     printSpellingChoiceMsg();
 
-    String spellChoice = "";
-
     while (true) {
-      print("English to Russian - 0, Russian to English - 1");
+      printNumCases();
 
-      spellChoice = reader.readLine();
+      String spellChoice = reader.readLine();
 
       switch(spellChoice) {
         case "0": {
@@ -42,7 +43,7 @@ public class SpellingTypeDialogViewer {
         }
         default:
           cleanScreen();
-          print("Шо ты, дятел, вводишь? Читай внимательно!");
+          print("What did you entered? Are you stupid sucker!");
           break;
       }
 

@@ -11,7 +11,7 @@ import java.util.Set;
 public abstract class AbstractSpelling implements Spelling {
 
   private boolean inProcess;
-  private Iterator iterator;
+  private Iterator<Map.Entry<String, Set<String>>> iterator;
   private Map.Entry<String, Set<String>> currentEntry;
 
   @Override
@@ -42,7 +42,7 @@ public abstract class AbstractSpelling implements Spelling {
 
   @Override
   public void nextWord() {
-    currentEntry = (Map.Entry<String, Set<String>>) iterator.next();
+    currentEntry = iterator.next();
     if (!iterator.hasNext()) {
       inProcess = false;
     }
