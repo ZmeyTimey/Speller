@@ -4,7 +4,6 @@ import by.timey.speller.dao.impl.DictionaryDAO;
 import by.timey.speller.dao.impl.UserDAO;
 import by.timey.speller.model.User;
 import by.timey.speller.model.WordTranslation;
-import org.hibernate.Hibernate;
 
 import java.util.Set;
 
@@ -23,5 +22,10 @@ public class UserDictionaryService {
     WordTranslation wordTranslation = dictionaryDAO.readById(pairId);
 
     userDAO.deleteUserWord(userId, wordTranslation);
+  }
+
+  public Set<WordTranslation> getAllUserWords(int userId) {
+    User user = userDAO.getUserWithDictionary(userId);
+    return user.getUserWords();
   }
 }

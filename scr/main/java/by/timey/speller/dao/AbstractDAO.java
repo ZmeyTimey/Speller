@@ -5,8 +5,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import javax.persistence.NoResultException;
-import java.util.List;
-
 
 public abstract class AbstractDAO<E, I extends Number> implements CrudDAO<E, I> {
 

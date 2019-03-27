@@ -1,10 +1,12 @@
 package by.timey.speller.view;
 
+import java.io.IOException;
+
 /**
  * Created by ����� on 31.03.18.
  *
  */
-public class Viewer {
+public class MainViewer {
 
     public static void print(Object msg) {
         System.out.println(msg);
@@ -26,13 +28,13 @@ public class Viewer {
 
     public static void printMsgCorrect() {
         print("\n---------------------------------------------------------------------------------");
-        print("***�����!***");
+        print("***Верно!***");
         print("---------------------------------------------------------------------------------\n");
     }
 
     public static void printMsgIncorrect(String[] arr) {
         System.out.println("\n---------------------------------------------------------------------------------");
-        System.out.print("*�� ������! ������ ���� ���: ");
+        System.out.print("*Неверно! Вот как надо: ");
         printArrayOut(arr);
         System.out.println("*");
         System.out.println("---------------------------------------------------------------------------------\n");
@@ -44,8 +46,14 @@ public class Viewer {
         print("*********2018 Minsk*********");
     }
 
-    public static void cleanScreen() throws Exception {
-        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+    public static void cleanScreen() {
+        try {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         System.out.flush();
     }
 }

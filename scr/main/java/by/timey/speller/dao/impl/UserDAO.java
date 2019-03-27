@@ -5,7 +5,6 @@ import by.timey.speller.model.User;
 import by.timey.speller.model.WordTranslation;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 import java.util.List;
 import java.util.Set;
@@ -56,6 +55,19 @@ public class UserDAO extends AbstractDAO<User, Integer> {
       session.update(user);
 
       session.getTransaction().commit();
+    }
+  }
+
+  public User getUserWithDictionary(int id) {
+
+    try (Session session = sessionFactory.openSession()) {
+
+      session.beginTransaction();
+      User user = readById(id);
+      Hibernate.initialize(user.getUserWords());
+      session.getTransaction().commit();
+
+      return user;
     }
   }
 }
