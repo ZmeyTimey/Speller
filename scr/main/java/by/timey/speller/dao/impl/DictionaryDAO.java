@@ -11,7 +11,9 @@ import java.util.List;
 @Repository
 public class DictionaryDAO extends AbstractDAO<WordTranslation, Long> {
 
-  private static final String READ_ALL_QUERY = "SELECT d FROM WordTranslation d";
+  private static final String READ_ALL_QUERY = "SELECT d FROM WordTranslation d ORDER BY RAND()";
+  private static final String READ_DISTINCT_ENGLISH
+      = "SELECT d FROM WordTranslation d ORDER BY RAND() LIMIT ";
 
   public DictionaryDAO() {
     super(WordTranslation.class);

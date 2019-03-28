@@ -1,16 +1,13 @@
 package by.timey.speller.main.spelling;
 
-import lombok.NoArgsConstructor;
-
-@NoArgsConstructor
 public class SpellingFactory {
 
-  public Spelling buildSpelling(boolean spellingType) {
+  public Spelling buildSpelling(boolean spellingType, int wordsNumber) {
 
     if (spellingType) {
-      return new RussianEnglishSpelling();
+      return new RussianEnglishSpelling(wordsNumber);
     } else {
-      return new EnglishRussianSpelling();
+      return new EnglishRussianSpelling(wordsNumber);
     }
   }
 }

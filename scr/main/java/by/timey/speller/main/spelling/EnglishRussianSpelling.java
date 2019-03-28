@@ -9,6 +9,10 @@ public class EnglishRussianSpelling extends AbstractSpelling {
 
   private static final String MESSAGE = "TRANSLATE FROM ENGLISH INTO RUSSIAN";
 
+  public EnglishRussianSpelling(int wordsNumber) {
+    super(wordsNumber);
+  }
+
   public String getMessage() {
     return MESSAGE;
   }

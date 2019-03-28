@@ -13,6 +13,11 @@ public abstract class AbstractSpelling implements Spelling {
   private boolean inProcess;
   private Iterator<Map.Entry<String, Set<String>>> iterator;
   private Map.Entry<String, Set<String>> currentEntry;
+  protected int wordsNumber;
+
+  public AbstractSpelling(int wordsNumber) {
+    this.wordsNumber = wordsNumber;
+  }
 
   @Override
   public boolean isInProcess() {

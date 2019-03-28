@@ -27,6 +27,8 @@ import static java.lang.Thread.sleep;
 @Component
 public class Speller {
 
+  private static final int WORDS_NUMBER = 11;
+
   private DictionaryService dictionaryService;
   private ConsoleReader reader;
 
@@ -86,7 +88,7 @@ public class Speller {
       spellingTypeDialogViewer.startDialog();
       boolean spellingType = spellingTypeDialogViewer.getSpellingType();
 
-      return new SpellingFactory().buildSpelling(spellingType);
+      return new SpellingFactory().buildSpelling(spellingType, WORDS_NUMBER);
     }
 
     private void executeSpelling(Spelling spelling,
