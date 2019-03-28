@@ -2,16 +2,19 @@ package by.timey.speller.service;
 
 import by.timey.speller.dao.impl.DictionaryDAO;
 import by.timey.speller.model.WordTranslation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class DictionaryService {
 
-  private static final DictionaryDAO DICTIONARY_DAO
-      = new DictionaryDAO();
+  @Autowired
+  private DictionaryDAO dictionaryDAO;
 
   public void addWordPair(WordTranslation wordTranslation) {
-    DICTIONARY_DAO.create(wordTranslation);
+    dictionaryDAO.create(wordTranslation);
   }
 
   public void addWordPair(String englishWord, String russianWord) {
@@ -20,10 +23,10 @@ public class DictionaryService {
     wordTranslation.setEnglishWord(englishWord);
     wordTranslation.setRussianWord(russianWord);
 
-    DICTIONARY_DAO.create(wordTranslation);
+    dictionaryDAO.create(wordTranslation);
   }
 
   public List<WordTranslation> getAllWords() {
-    return DICTIONARY_DAO.readAll();
+    return dictionaryDAO.readAll();
   }
 }

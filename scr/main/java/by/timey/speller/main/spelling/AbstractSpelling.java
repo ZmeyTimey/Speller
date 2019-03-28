@@ -1,7 +1,7 @@
-package by.timey.speller.controller.spelling;
+package by.timey.speller.main.spelling;
 
 import by.timey.speller.model.WordTranslation;
-import by.timey.speller.util.Checker;
+import by.timey.speller.main.util.Checker;
 
 import java.util.Iterator;
 import java.util.List;

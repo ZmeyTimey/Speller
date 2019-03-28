@@ -1,6 +1,6 @@
 package by.timey.speller.view;
 
-import by.timey.speller.util.ConsoleReader;
+import by.timey.speller.main.util.ConsoleReader;
 import lombok.Getter;
 
 import static by.timey.speller.view.MainConsoleViewer.cleanScreen;

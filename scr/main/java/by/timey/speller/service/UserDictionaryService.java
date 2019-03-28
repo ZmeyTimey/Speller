@@ -4,9 +4,11 @@ import by.timey.speller.dao.impl.DictionaryDAO;
 import by.timey.speller.dao.impl.UserDAO;
 import by.timey.speller.model.User;
 import by.timey.speller.model.WordTranslation;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class UserDictionaryService {
 
   private final UserDAO userDAO = new UserDAO();

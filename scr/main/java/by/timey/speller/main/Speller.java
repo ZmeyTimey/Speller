@@ -1,15 +1,18 @@
-package by.timey.speller.controller;
+package by.timey.speller.main;
 
+import by.timey.speller.main.config.SpringMainConfig;
 import by.timey.speller.model.WordTranslation;
 import by.timey.speller.service.DictionaryService;
-import by.timey.speller.service.UserDictionaryService;
-import by.timey.speller.service.UserService;
-import by.timey.speller.util.AnswerCounter;
-import by.timey.speller.util.ConsoleReader;
+import by.timey.speller.main.util.AnswerCounter;
+import by.timey.speller.main.util.ConsoleReader;
 import by.timey.speller.view.SpellingTypeDialogViewer;
-import by.timey.speller.controller.spelling.Spelling;
-import by.timey.speller.controller.spelling.SpellingFactory;
+import by.timey.speller.main.spelling.Spelling;
+import by.timey.speller.main.spelling.SpellingFactory;
 import by.timey.speller.view.StartDialogViewer;
+import lombok.Getter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -20,29 +23,41 @@ import static java.lang.Thread.sleep;
  * Speller
  * Creating by Тимей since 24.03.18.
  */
+@Getter
+@Component
 public class Speller {
 
-  private static final UserService USER_SERVICE
-      = new UserService();
-  private static final DictionaryService DICTIONARY_SERVICE
-      = new DictionaryService();
-  private static final UserDictionaryService USER_DICTIONARY_SERVICE
-      = new UserDictionaryService();
+  private DictionaryService dictionaryService;
+  private ConsoleReader reader;
 
-  private static ConsoleReader reader = new ConsoleReader();
+  @Autowired
+  private void setDictionaryService(DictionaryService dictionaryService) {
+    this.dictionaryService = dictionaryService;
+  }
+
+  @Autowired
+  private void setReader(ConsoleReader reader) {
+    this.reader = reader;
+  }
 
     public static void main(String[] args) {
+      AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+      context.register(SpringMainConfig.class);
+      context.refresh();
 
       cleanScreen();
       printHeader();
 
-      reader.readLine();
-      start(reader);
+      Speller speller = context.getBean(Speller.class);
+      speller.start();
     }
 
-    private static void start(ConsoleReader reader) {
-      StartDialogViewer dialogViewer = new StartDialogViewer(reader);
-      dialogViewer.startDialog();
+    private void start() {
+
+    reader.readLine();
+    StartDialogViewer dialogViewer = new StartDialogViewer(reader);
+    dialogViewer.startDialog();
+
       if (dialogViewer.getContinueOrExit()) {
         spell();
       } else {
@@ -50,22 +65,22 @@ public class Speller {
       }
     }
 
-    private static void spell() {
+    private void spell() {
       cleanScreen();
-      Spelling spelling = initializeSpelling(reader);
+      Spelling spelling = initializeSpelling();
 
       cleanScreen();
-      List<WordTranslation> wordTranslationList = DICTIONARY_SERVICE.getAllWords();
+      List<WordTranslation> wordTranslationList = dictionaryService.getAllWords();
       AnswerCounter answerCounter = new AnswerCounter();
 
-      executeSpelling(spelling, wordTranslationList, reader, answerCounter);
+      executeSpelling(spelling, wordTranslationList, answerCounter);
       viewResults(answerCounter);
 
       reader.readLine();
-      start(reader);
+      start();
     }
 
-    private static Spelling initializeSpelling(ConsoleReader reader) {
+    private Spelling initializeSpelling() {
 
       SpellingTypeDialogViewer spellingTypeDialogViewer = new SpellingTypeDialogViewer(reader);
       spellingTypeDialogViewer.startDialog();
@@ -74,10 +89,9 @@ public class Speller {
       return new SpellingFactory().buildSpelling(spellingType);
     }
 
-    private static void executeSpelling(Spelling spelling,
-                                        List<WordTranslation> wordTranslationList,
-                                        ConsoleReader reader,
-                                        AnswerCounter answerCounter) {
+    private void executeSpelling(Spelling spelling,
+                                 List<WordTranslation> wordTranslationList,
+                                 AnswerCounter answerCounter) {
 
       print(spelling.getMessage() + "\n");
       spelling.startSpelling(wordTranslationList);
@@ -99,7 +113,7 @@ public class Speller {
       }
     }
 
-    private static void viewResults(AnswerCounter answerCounter) {
+    private void viewResults(AnswerCounter answerCounter) {
 
       int correctAnswers = answerCounter.getCorrectAnswers();
       int incorrectAnswers = answerCounter.getIncorrectAnswers();

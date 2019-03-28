@@ -1,4 +1,4 @@
-package by.timey.speller.util;
+package by.timey.speller.main.util;
 
 import lombok.Getter;
 

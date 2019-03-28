@@ -5,11 +5,13 @@ import by.timey.speller.model.User;
 import by.timey.speller.model.WordTranslation;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Set;
 
 
+@Repository
 public class UserDAO extends AbstractDAO<User, Integer> {
 
   private static final String READ_ALL_QUERY = "SELECT a FROM \"user\" a";

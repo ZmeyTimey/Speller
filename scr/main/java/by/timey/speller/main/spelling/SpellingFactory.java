@@ -1,4 +1,4 @@
-package by.timey.speller.controller.spelling;
+package by.timey.speller.main.spelling;
 
 import lombok.NoArgsConstructor;
 

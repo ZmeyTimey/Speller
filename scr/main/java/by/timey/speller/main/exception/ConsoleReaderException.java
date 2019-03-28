@@ -1,4 +1,4 @@
-package by.timey.speller.exception;
+package by.timey.speller.main.exception;
 
 public class ConsoleReaderException extends RuntimeException {
   public ConsoleReaderException() {

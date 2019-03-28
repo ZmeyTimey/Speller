@@ -1,4 +1,4 @@
-package by.timey.speller.util;
+package by.timey.speller.main.util;
 
 import java.util.HashSet;
 import java.util.Map;
