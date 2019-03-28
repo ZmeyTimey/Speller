@@ -11,9 +11,9 @@ import java.util.List;
 @Repository
 public class DictionaryDAO extends AbstractDAO<WordTranslation, Long> {
 
-  private static final String READ_ALL_QUERY = "SELECT d FROM WordTranslation d ORDER BY RAND()";
-  private static final String READ_DISTINCT_ENGLISH
-      = "SELECT d FROM WordTranslation d ORDER BY RAND() LIMIT ";
+  private static final String READ_ALL_QUERY = "SELECT d FROM WordTranslation d ORDER BY RANDOM()";
+  private static final String READ_WITH_LIMIT_QUERY
+      = "SELECT * FROM dictionary ORDER BY RANDOM() LIMIT ";
 
   public DictionaryDAO() {
     super(WordTranslation.class);
@@ -22,6 +22,13 @@ public class DictionaryDAO extends AbstractDAO<WordTranslation, Long> {
   public List<WordTranslation> readAll() {
     try (Session session = sessionFactory.openSession()) {
       return session.createQuery(READ_ALL_QUERY, entityClass).getResultList();
+    }
+  }
+
+  public List<WordTranslation> readWithLimit(int limit) {
+    try (Session session = sessionFactory.openSession()) {
+      return session.createNativeQuery(
+          READ_WITH_LIMIT_QUERY + limit, entityClass).getResultList();
     }
   }
 }

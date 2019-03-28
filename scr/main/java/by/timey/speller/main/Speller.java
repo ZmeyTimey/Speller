@@ -27,7 +27,7 @@ import static java.lang.Thread.sleep;
 @Component
 public class Speller {
 
-  private static final int WORDS_NUMBER = 11;
+  private static final int WORDS_NUMBER = 6;
 
   private DictionaryService dictionaryService;
   private ConsoleReader reader;
@@ -72,10 +72,9 @@ public class Speller {
       Spelling spelling = initializeSpelling();
 
       cleanScreen();
-      List<WordTranslation> wordTranslationList = dictionaryService.getAllWords();
       AnswerCounter answerCounter = new AnswerCounter();
 
-      executeSpelling(spelling, wordTranslationList, answerCounter);
+      executeSpelling(spelling, answerCounter);
       viewResults(answerCounter);
 
       reader.readLine();
@@ -88,15 +87,14 @@ public class Speller {
       spellingTypeDialogViewer.startDialog();
       boolean spellingType = spellingTypeDialogViewer.getSpellingType();
 
-      return new SpellingFactory().buildSpelling(spellingType, WORDS_NUMBER);
+      return new SpellingFactory().buildSpelling(spellingType, WORDS_NUMBER, dictionaryService);
     }
 
     private void executeSpelling(Spelling spelling,
-                                 List<WordTranslation> wordTranslationList,
                                  AnswerCounter answerCounter) {
 
       print(spelling.getMessage() + "\n");
-      spelling.startSpelling(wordTranslationList);
+      spelling.startSpelling();
 
       while (spelling.isInProcess()) {
         spelling.nextWord();
