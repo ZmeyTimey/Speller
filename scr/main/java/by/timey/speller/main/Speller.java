@@ -1,20 +1,18 @@
 package by.timey.speller.main;
 
 import by.timey.speller.main.config.SpringMainConfig;
-import by.timey.speller.model.WordTranslation;
 import by.timey.speller.service.DictionaryService;
 import by.timey.speller.main.util.AnswerCounter;
 import by.timey.speller.main.util.ConsoleReader;
-import by.timey.speller.view.SpellingTypeDialogViewer;
+import by.timey.speller.view.dialog.SpellingTypeDialogViewer;
 import by.timey.speller.main.spelling.Spelling;
 import by.timey.speller.main.spelling.SpellingFactory;
-import by.timey.speller.view.StartDialogViewer;
+import by.timey.speller.view.dialog.StartDialogViewer;
+import by.timey.speller.view.dialog.WordsNumberDialogViewer;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 import static by.timey.speller.view.MainConsoleViewer.*;
 import static java.lang.Thread.sleep;
@@ -26,8 +24,6 @@ import static java.lang.Thread.sleep;
 @Getter
 @Component
 public class Speller {
-
-  private static final int WORDS_NUMBER = 6;
 
   private DictionaryService dictionaryService;
   private ConsoleReader reader;
@@ -83,11 +79,17 @@ public class Speller {
 
     private Spelling initializeSpelling() {
 
-      SpellingTypeDialogViewer spellingTypeDialogViewer = new SpellingTypeDialogViewer(reader);
+      SpellingTypeDialogViewer spellingTypeDialogViewer
+          = new SpellingTypeDialogViewer(reader);
       spellingTypeDialogViewer.startDialog();
       boolean spellingType = spellingTypeDialogViewer.getSpellingType();
 
-      return new SpellingFactory().buildSpelling(spellingType, WORDS_NUMBER, dictionaryService);
+      WordsNumberDialogViewer wordsNumberDialogViewer
+          = new WordsNumberDialogViewer(reader);
+      wordsNumberDialogViewer.startDialog();
+      int wordsNumber = wordsNumberDialogViewer.getWordsNumber();
+
+      return new SpellingFactory().buildSpelling(spellingType, wordsNumber, dictionaryService);
     }
 
     private void executeSpelling(Spelling spelling,

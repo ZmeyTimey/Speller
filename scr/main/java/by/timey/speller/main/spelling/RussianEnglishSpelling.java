@@ -9,21 +9,32 @@ public class RussianEnglishSpelling extends AbstractSpelling {
 
   private static final String MESSAGE = "TRANSLATE FROM RUSSIAN INTO ENGLISH";
 
-  public RussianEnglishSpelling(List<WordTranslation> wordList) {
-    super(wordList);
+  RussianEnglishSpelling(List<WordTranslation> wordList, int wordsNumber) {
+    super(wordList, wordsNumber);
   }
 
   public String getMessage() {
     return MESSAGE;
   }
 
-  protected Map<String, Set<String>> buildWordMap(List<WordTranslation> wordList) {
+  protected Map<String, Set<String>> buildWordMap() {
 
     Map<String, Set<String>> wordMap = new HashMap<>();
-    wordList.forEach(wordTranslation ->
-      WordsMapper.putWordPair(
-          wordTranslation.getRussianWord(), wordTranslation.getEnglishWord(), wordMap)
-    );
+
+    if (wordsNumber != 0) {
+      Iterator<WordTranslation> iterator = wordList.iterator();
+      while (wordMap.size() < wordsNumber) {
+        WordTranslation wordTranslation = iterator.next();
+
+        WordsMapper.putWordPair(wordTranslation.getRussianWord(),
+            wordTranslation.getEnglishWord(), wordMap);
+      }
+
+    } else {
+      wordList.forEach(wordTranslation ->
+        WordsMapper.putWordPair(wordTranslation.getRussianWord(),
+            wordTranslation.getEnglishWord(), wordMap));
+    }
     return wordMap;
   }
 }

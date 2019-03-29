@@ -13,10 +13,13 @@ public abstract class AbstractSpelling implements Spelling {
   private boolean inProcess;
   private Iterator<Map.Entry<String, Set<String>>> iterator;
   private Map.Entry<String, Set<String>> currentEntry;
-  protected List<WordTranslation> wordList;
 
-  public AbstractSpelling(List<WordTranslation> wordList) {
+  List<WordTranslation> wordList;
+  int wordsNumber;
+
+  AbstractSpelling(List<WordTranslation> wordList, int wordsNumber) {
     this.wordList = wordList;
+    this.wordsNumber = wordsNumber;
   }
 
   @Override
@@ -40,7 +43,7 @@ public abstract class AbstractSpelling implements Spelling {
   @Override
   public void startSpelling() {
 
-    Map<String, Set<String>> wordMap = buildWordMap(wordList);
+    Map<String, Set<String>> wordMap = buildWordMap();
     iterator = wordMap.entrySet().iterator();
     inProcess = true;
   }
@@ -58,5 +61,5 @@ public abstract class AbstractSpelling implements Spelling {
     return Checker.check(userWord, currentEntry.getValue());
   }
 
-  protected abstract Map<String, Set<String>> buildWordMap(List<WordTranslation> wordTranslationList);
+  protected abstract Map<String, Set<String>> buildWordMap();
 }

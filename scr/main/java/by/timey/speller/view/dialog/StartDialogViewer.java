@@ -1,4 +1,4 @@
-package by.timey.speller.view;
+package by.timey.speller.view.dialog;
 
 import by.timey.speller.main.util.ConsoleReader;
 import lombok.Getter;
@@ -6,7 +6,7 @@ import lombok.Getter;
 import static by.timey.speller.view.MainConsoleViewer.cleanScreen;
 import static by.timey.speller.view.MainConsoleViewer.print;
 
-public class StartDialogViewer {
+public class StartDialogViewer implements DialogViewer {
 
   private ConsoleReader reader;
 

@@ -29,7 +29,4 @@ public class DictionaryService {
   public List<WordTranslation> getAllWords() {
     return dictionaryDAO.readAll();
   }
-  public List<WordTranslation> getWordsWithLimit(int limit) {
-    return dictionaryDAO.readWithLimit(limit);
-  }
 }
