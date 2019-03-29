@@ -1,6 +1,5 @@
 package by.timey.speller.main;
 
-import by.timey.speller.main.config.SpringMainConfig;
 import by.timey.speller.service.DictionaryService;
 import by.timey.speller.main.util.AnswerCounter;
 import by.timey.speller.main.util.ConsoleReader;
@@ -9,9 +8,10 @@ import by.timey.speller.main.spelling.Spelling;
 import by.timey.speller.main.spelling.SpellingFactory;
 import by.timey.speller.view.dialog.StartDialogViewer;
 import by.timey.speller.view.dialog.WordsNumberDialogViewer;
+
 import lombok.Getter;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 
 import static by.timey.speller.view.MainConsoleViewer.*;
@@ -38,19 +38,7 @@ public class Speller {
     this.reader = reader;
   }
 
-    public static void main(String[] args) {
-      AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-      context.register(SpringMainConfig.class);
-      context.refresh();
-
-      cleanScreen();
-      printHeader();
-
-      Speller speller = context.getBean(Speller.class);
-      speller.start();
-    }
-
-    private void start() {
+    void start() {
 
     reader.readLine();
     StartDialogViewer dialogViewer = new StartDialogViewer(reader);
