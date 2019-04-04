@@ -5,9 +5,11 @@ import by.timey.speller.main.util.WordsMapper;
 
 import java.util.*;
 
+import static by.timey.speller.view.ViewConstantStore.MESSAGE_TRANSLATE_ENGLISH;
+
 public class EnglishRussianSpelling extends AbstractSpelling {
 
-  private static final String MESSAGE = "TRANSLATE FROM ENGLISH INTO RUSSIAN";
+  private static final String MESSAGE = MESSAGE_TRANSLATE_ENGLISH;
 
   EnglishRussianSpelling(List<WordTranslation> wordList, int wordsNumber) {
     super(wordList, wordsNumber);

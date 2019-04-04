@@ -5,6 +5,7 @@ import lombok.Getter;
 
 import static by.timey.speller.view.MainConsoleViewer.cleanScreen;
 import static by.timey.speller.view.MainConsoleViewer.print;
+import static by.timey.speller.view.ViewConstantStore.DIALOG_START;
 
 public class StartDialogViewer implements DialogViewer {
 
@@ -18,7 +19,7 @@ public class StartDialogViewer implements DialogViewer {
   private Boolean continueOrExit;
 
   private void printDialogMsg() {
-    print("Enter \"s\" to start new spelling or enter \"e\" to exit the app");
+    print(DIALOG_START);
   }
 
   public void startDialog() {

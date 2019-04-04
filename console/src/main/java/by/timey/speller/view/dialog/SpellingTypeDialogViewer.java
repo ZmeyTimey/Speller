@@ -1,10 +1,12 @@
 package by.timey.speller.view.dialog;
 
 import by.timey.speller.main.util.ConsoleReader;
+import by.timey.speller.view.ViewConstantStore;
 import lombok.Getter;
 
 import static by.timey.speller.view.MainConsoleViewer.cleanScreen;
 import static by.timey.speller.view.MainConsoleViewer.print;
+import static by.timey.speller.view.ViewConstantStore.*;
 
 public class SpellingTypeDialogViewer implements DialogViewer {
 
@@ -18,10 +20,10 @@ public class SpellingTypeDialogViewer implements DialogViewer {
   }
 
   private void printSpellingChoiceMsg() {
-    print("Choose spelling type:");
+    print(DIALOG_SPELLTYPE_MESSAGE);
   }
   private void printNumCases() {
-    print("English to Russian - 0, Russian to English - 1");
+    print(DIALOG_SPELLTYPE_CHOICE);
   }
 
   public void startDialog() {
@@ -43,7 +45,7 @@ public class SpellingTypeDialogViewer implements DialogViewer {
         }
         default:
           cleanScreen();
-          print("What did you entered? Are you stupid sucker!");
+          print(DIALOG_SPELLTYPE_ERROR);
           break;
       }
 

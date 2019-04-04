@@ -21,6 +21,7 @@
         <spring.version>5.1.5.RELEASE</spring.version>
         <servlet-api.version>4.0.1</servlet-api.version>
         <tomcat-plugin.version>2.2</tomcat-plugin.version>
+        <freemarker.version>2.3.28</freemarker.version>
     </properties>
 
     <dependencyManagement>
@@ -73,6 +74,12 @@
                 <artifactId>javax.servlet-api</artifactId>
                 <version>${servlet-api.version}</version>
                 <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>${freemarker.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

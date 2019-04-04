@@ -5,6 +5,7 @@ import lombok.Getter;
 
 import static by.timey.speller.view.MainConsoleViewer.cleanScreen;
 import static by.timey.speller.view.MainConsoleViewer.print;
+import static by.timey.speller.view.ViewConstantStore.*;
 
 public class WordsNumberDialogViewer implements DialogViewer {
 
@@ -18,7 +19,7 @@ public class WordsNumberDialogViewer implements DialogViewer {
   }
 
   private void printDialogMessage() {
-    print("Choose the number of words");
+    print(DIALOG_WORDS_NUMBER_MESSAGE);
   }
 
   @Override
@@ -39,8 +40,8 @@ public class WordsNumberDialogViewer implements DialogViewer {
         break;
       } else {
         cleanScreen();
-        print("A bullshit you entered is not a number or something else went wrong");
-        print("Please, try again, darling...");
+        print(DIALOG_WORDS_NUMBER_ERROR);
+        print(DIALOG_WORDS_NUMBER_TRY_AGAIN);
       }
     }
   }
