@@ -5,11 +5,15 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
 
+import static by.timey.speller.view.ViewConstantStore.*;
+
 /**
  * Created by Timey on 31.03.18.
  * Changed by Timey on 27.03.19.
  */
-public class MainConsoleViewer {
+public final class MainConsoleViewer {
+
+    private MainConsoleViewer() {}
 
     public static void print(Object msg) {
         System.out.println(msg);
@@ -20,43 +24,43 @@ public class MainConsoleViewer {
     }
 
     public static void printHeader() {
-        print("***Program SPELLER v.0.6***");
-        print("******Created by Timey******");
-        print("*********2019 Minsk*********");
+        print(HEADER_VERSION);
+        print(HEADER_AUTHOR);
+        print(HEADER_YEAR_PLACE);
     }
 
     public static void printGoodbye() {
-        print("GOODBYE!");
+        print(MESSAGE_GOODBYE);
     }
 
     public static void printMsgCorrect() {
-        print("\n---------------------------------------------------------------------------------");
-        print("***Correct!***");
-        print("---------------------------------------------------------------------------------\n");
+        print("\n" + LINE);
+        print(MESSAGE_CORRECT);
+        print(LINE + "\n");
     }
 
     public static void printMsgIncorrect(Set<String> correctTranslation) {
-        System.out.println("\n---------------------------------------------------------------------------------");
-        System.out.print("*Incorrect! Correct answer: ");
+        print("\n" + LINE);
+        System.out.print(MESSAGE_INCORRECT);
         printCollectionOut(correctTranslation);
-        System.out.println("*");
-        System.out.println("---------------------------------------------------------------------------------\n");
+        print("*");
+        print(LINE + "\n");
     }
 
     public static void printSpellingCompleteMsg() {
-        print("SPELLING COMPLETE\n");
+        print(MESSAGE_COMPLETE + "\n");
     }
 
     public static void printSpellingResults(int correctAnswers,
                                             int incorrectAnswers,
                                             int totalAnswers) {
-        print("Correct answers: " + correctAnswers + "/" + totalAnswers + "\n");
+        print(RESULT_CORRECT_ANSWERS + " " + correctAnswers + "/" + totalAnswers + "\n");
 
         if (correctAnswers == 0) {
-            print("You are stupid asshole!");
+            print(RESULT_FAIL);
         }
         if (incorrectAnswers == 0) {
-            print("You are GODLIKE!");
+            print(RESULT_SUCCESS);
         }
     }
 

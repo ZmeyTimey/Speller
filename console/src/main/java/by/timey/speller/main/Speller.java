@@ -40,7 +40,10 @@ public class Speller {
 
     void start() {
 
+    cleanScreen();
+    printHeader();
     reader.readLine();
+
     StartDialogViewer dialogViewer = new StartDialogViewer(reader);
     dialogViewer.startDialog();
 
